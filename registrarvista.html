@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, minimum-scale=1.0">
+ <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" >
+ <link rel="stylesheet" href="estilos.css">
+	 
+</head>  
+<body>
+ <form id="formulario" class="formulario">
+    
+    <h1 style="color:rgb(231, 0, 0)" id="divi">Registrate</h1>
+     <div class="contenedor">
+     
+     <div class="input-contenedor">
+         <i class="fas fa-user icon"></i>
+         <input id="USER" type="text" placeholder="Nombre Completo">
+         
+         </div>
+         
+         <div class="input-contenedor">
+         <i class="fas fa-envelope icon"></i>
+         <input id="MAIL" type="text" placeholder="Correo Electronico">
+         
+         </div>
+         
+         <div class="input-contenedor">
+        <i class="fas fa-key icon"></i>
+         <input id="PASS" type="password" placeholder="Contraseña">
+         
+         </div>
+
+         <div class="input-contenedor">
+        <i id="icono" class="fas fa-key icon"></i>
+         <input id="PASS2" type="password" placeholder="Confirmar contraseña">
+         
+         </div>
+         <input style="text-align:center;background-color:rgb(226, 0, 0);" id="botonputa" value="Registrar" class="button">
+         <p >Al registrarte, aceptas nuestras Condiciones de uso y Política de privacidad.</p>
+         <p>¿Ya tienes una cuenta?<a style="color:rgb(238, 0, 0)" class="link" href="loginvista.html">Iniciar Sesion</a></p>
+     </div>
+    </form>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+       
+       $(document).ready(function(){
+        $('#formularioid').submit(function(e){
+        e.preventDefault();
+        })
+
+$('#botonputa').click(function(){
+    
+    let usuario = $('#USER').val();
+    let email = $('#MAIL').val();
+    let contraseña = $('#PASS').val();
+    let contraseña2 = $('#PASS2').val();
+     $.ajax({
+         url : 'malditoregayax.php',
+         type: 'post',
+         data: { usuario, email, contraseña, contraseña2},
+         success: function(response){alert(response);}
+     })
+     $('#formulario').trigger('reset'); 
+})
+
+})
+
+    </script>
+   <!-- <script src="ajax-utils.js" ></script>
+  <script src="script.js" ></script> -->
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+// Custom.scss
+// Option A: Include all of Bootstrap
+
+// Include any default variable overrides here (though functions won't be available)
+$principal: #d21496;
+$primary: $principal;
+$navbar-light-color: rgba($black, .55);
+$navbar-padding-y:                  $spacer * .5;
+
+
+
+
+@import "../bootstrap/scss/bootstrap";
+
+
+
+// Then add additional custom code here

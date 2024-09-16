@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title></title> 
+	<meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, minimum-scale=1.0">
+ <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" >
+	<link rel="stylesheet" href="estilos.css">
+	
+
+</head>  
+<body>
+    <form id="formularioid"class="formulario">
+    
+    <h1 style="color:rgba(204, 0, 0, 0.87)" >Login</h1>
+     <div class="contenedor">
+     
+     
+         
+         <div class="input-contenedor">
+         <i class="fas fa-envelope icon"></i>
+         <input id="MAIL" type="text" placeholder="Correo Electronico">
+         
+         </div>
+         
+         <div class="input-contenedor">
+        <i class="fas fa-key icon"></i>
+         <input id="PASS" type="password" placeholder="Contraseña">
+         
+         </div>
+         <input style="background-color:rgb(202, 0, 0)" id="button" type="submit" value="Login" class="button">
+         <p >Al registrarte, aceptas nuestras Condiciones de uso y Política de privacidad.</p>
+         <p>¿No tienes una cuenta? <a style="color:rgb(211, 0, 0);" class="link" href="registrarvista.html">Registrate </a></p>
+     </div>
+    </form>
+         <div style="padding-left:585px;" class="input-contenedor">
+        <i class="fas fa-bars icon"></i>
+         <input id="busqueda" type="search" placeholder="Buscar">        
+         </div>
+         <br>
+         <img src="https://lh3.googleusercontent.com/a/AEdFTp4jPh86tD6YInuGWTI2O0MiKeQdVDn-KShWNmp7WA=s96-c">
+
+         <div>
+             <ul style="padding-left: 0px;" id="contenedor">
+    <div style="height: 40px;width:40px;background-color: red;" id="googlelogin"></div>
+             </ul>
+         </div>
+ 
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+$(document).ready(function(){
+
+    $.ajax({
+        url: "index.php",
+        method: "get",
+        success:function(response){
+            console.log(response);
+            let texto = response;
+            console.log(texto);
+            document.getElementById("googlelogin").innerHTML = texto;
+
+        }
+    })
+
+    $('#formularioid').submit(function(e){
+    e.preventDefault();
+})
+
+    $('#busqueda').keyup(function(e){
+      if($('#busqueda').val()){
+        let busqueda = $('#busqueda').val();
+        $.ajax({
+                     url : 'LOGIN.php',
+                     type: 'post',
+                     data: { busqueda },
+                     success: function(response){
+                          let tabla = JSON.parse(response);
+                          let template= '';
+                          tabla.forEach(tabla => {
+                              template += "<div style='text-align:center; color:red;' class='input-contenedor'>" + "<a style='border: 1px solid #000000; margin: 5px;'>" + tabla.nombre + "</a>" + tabla.email + tabla.contraseña + "</div>"
+                          })
+                          $('#contenedor').html(template);
+                          console.log(tabla);
+                     }
+        })
+      } else {$('#contenedor').html(null);}
+    })
+
+    $('#button').click(function(){
+        let password = $('#PASS').val();
+        let mail = $('#MAIL').val();
+        const data = {mail :$('#MAIL').val(), pass :$('#PASS').val()};      
+        $.post('verdaderologin.php', data, function(response){
+                  if(response){
+                    let usuarioresponse = JSON.parse(response);
+                    localStorage.setItem("nombredeusuario", usuarioresponse.nombre);
+                    localStorage.setItem("fotodeusuario", usuarioresponse.picture);
+                    localStorage.setItem("tokendeusuario", usuarioresponse.usuariovideo);       
+                    window.open("index.html","_self")}else{alert(response); $('.input-contenedor').css('background-color','red');
+                }
+        });
+        
+    })
+    
+    
+
+})
+
+        
+    </script>
+</body>
+</html>

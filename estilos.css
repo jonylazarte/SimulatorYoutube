@@ -1,0 +1,90 @@
+
+* {
+    box-sizing: border-box;
+}
+.contenedor{
+    width: 30%;
+    padding: 15px;
+    margin-left:500px;
+    
+}
+.formulario{
+    background: #fff;
+    margin-top: 50px;
+    padding: 3px;
+    
+}
+h1{
+    text-align: center;
+    color: #bb0000!important;
+    font-size: 40px;
+}
+input[type="text"],
+input[type="password"],
+input[type="email"]{
+    font-size: 20px;
+    width: 86.2%;
+    padding:10px;
+    border: none;
+}
+.input-contenedor{
+    margin-bottom: 15px;
+    border: 1px solid #aaa;
+}
+.icon{
+    min-width: 50px;
+    text-align: center;
+    color: #999;
+}
+.button{
+    border: none;
+    width: 100%;
+    color: white;
+    font-size: 20px;
+    background:  #ce0000cc;
+    padding: 15px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.button:hover{
+    background: cadetblue;
+}
+p{
+    text-align: center;
+}
+.link{
+    text-decoration: none;
+      color: #ce0000;
+    font-weight: 600;
+}
+.link:hover{
+     color: cadetblue;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

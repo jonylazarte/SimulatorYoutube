@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="estilovideos.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,700&display=swap" rel="stylesheet">
+    <title>Mis videos</title>
+</head>
+<body>
+    
+      <nav class="NAVEGACIONTOP">
+          <div class="LOGO"> <a class="BOTON"></a> <a href="index.html" class="IMAGEN"><img src="yt.png"></a></div>
+          <div class="BUSQUEDA"> <input id="buscarvideos" type="search" class="INPUTBUSQUEDA" placeholder="Buscar contendio en tu canal"></div>
+          <div class="ICONOS"><a id="cargarusuario" class="icono">Load</a><a id="abrirform"class="icono">Subir</a><a href="" class="icono"></a></div>
+      </nav>
+      <nav class="NAVEGACIONLEFT" id="NAVEGACIONLEFT">
+       <div class="NAVEGACIONSEX UNO">
+           <div>Foto de perfil</div>
+           <h5>Tu canal</h5>
+           <h6 id="nombredeusuario">Jonathan Lazarte</h6>
+       </div>
+       <div class="NAVEGACIONSEX DOS">
+           <ul class="NAVLEFTUL" id="DOS">
+               <li class="NAVLEFTLI">Panel de control</li>
+               <li class="NAVLEFTLI">Contenido</li>
+               <li class="NAVLEFTLI">Listas</li>
+               <li class="NAVLEFTLI">Estadisticas</li>
+               <li class="NAVLEFTLI">Comentarios</li>
+               <li class="NAVLEFTLI">Subtitulos</li>
+               <li class="NAVLEFTLI">Derechos del autor</li>
+               <li class="NAVLEFTLI">Monetizacion</li>
+               <li class="NAVLEFTLI">Personalizacion</li>
+               <li class="NAVLEFTLI">Biblioteca de audio</li>
+           </ul>
+       </div>
+       <div class="NAVEGACIONSEX TRES">
+           <ul class="NAVLEFTUL">
+               <li class="NAVLEFTLI">Configuracion</li>
+               <li class="NAVLEFTLI">Enviar sugerencias</li>
+           </ul>
+       </div>
+      </nav>
+
+
+      <form id="FORM" class="FORM">
+          <div><p style="text-align:center;color:white;background-color:#bd0000;cursor:pointer;" id="cerrarform">Cerrar</p></div>
+          <input id="id" type="hidden">
+          <input id="usuariovideo" type="hidden">
+          <div class="FORMDIV"><input id="archivo" type="text"></div>
+          <div class="FORMDIV"><input id="titulo" type="text" placeholder="Titulo del video"></div>
+          <div class="FORMDIV"><input id="subirvideo" style="cursor:pointer;color:white;background-color:#bd0000" value="Subir video" type="submit"></div>
+      </form>
+
+      <main id="princi" class="principal">
+        <div id="vidi" class= "videos">
+      
+      </div>
+    </main>
+
+
+      <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script>
+
+    $(document).ready(function(){
+
+    cargartodo();
+    cargarusuario();
+    var actualusuario = "";
+
+    function cargarusuario(){
+      $.ajax({
+        url: 'enter.php',
+        type: 'get',
+        success: function(response){
+          if(response == "nada"){
+            var nombredeusuario = localStorage.getItem("nombredeusuario");
+            let tokendeusuario = localStorage.getItem("tokendeusuario");
+            actualusuario = tokendeusuario;
+            console.log(tokendeusuario);
+          } else {
+           let googleaccount = JSON.parse(response);
+           let googleaccountname = googleaccount.token; 
+           actualusuario = googleaccountname
+           console.log(actualusuario);;
+           console.log(googleaccountname); 
+          }
+           
+
+        }
+      })
+    }
+        function Actualizarform(){
+             if(editando == true){
+                $('#subirvideo').css('background-color','yellow');
+                     $('#subirvideo').css('color','black');
+                     $('#cerrarform').css('background-color', 'yellow');
+                     $('#cerrarform').css('color','black');
+                     $('#subirvideo').attr("Value","Editar video");
+             }else{
+                $('#subirvideo').css('background-color','#bd0000');
+                     $('#subirvideo').css('color','white');
+                     $('#cerrarform').css('background-color', '#bd0000');
+                     $('#cerrarform').css('color','white');
+                     $('#subirvideo').attr("Value","Subir video");
+             }
+         }
+        $('#FORM').submit(function(e){
+    e.preventDefault();
+})
+
+        var editando = false;
+         $('#abrirform').click(function(){
+             document.getElementById('FORM').style.display = 'flex';
+         })
+         $('#cerrarform').click(function(){
+             document.getElementById('FORM').style.display = 'none';
+             editando = false;                  
+             Actualizarform();
+         })
+
+         function cargartodo(){
+      $.ajax({
+       url: 'todoslosvideos.php',
+       type: 'get',
+       success: function(response){
+          let cadena = JSON.parse(response); 
+                 let textohtml="";
+                        cadena.forEach(cadena=>{
+                            textohtml += "<a class='VIDEO'>" + "<img src='" + cadena.archivo + "'>" + "<p atributoid='"+ cadena.id +"'class='Titulo'>" + "<span style='text-align:left;width:60%;display:inline-block;'>" + cadena.titulo+"</span>"+"<span class='edit' style='text-align:center;background-color:gold;width:20%;display:inline-block;color:white;'>Editar</span>" +"<span class='delete' style='color:white;width:20%;text-align:center;background-color:red;display:inline-block;'>Borrar</span></p>"+"</a>";
+                          })
+                          $('#vidi').html(textohtml);
+
+        }
+     })
+    }
+
+         $('#subirvideo').click(function(){
+             let archivo = $('#archivo').val();
+             let titulo = $('#titulo').val();
+             let id = $('#id').val();
+             let UsuarioVideo = actualusuario;
+             let url = editando === false ? 'subirvideo.php' : 'editarvideo.php';
+             let subida = Date.now();
+             $.ajax({
+                 url: url, //subirvideo.php
+                 type:'post',
+                 data: {archivo, titulo, id, UsuarioVideo, subida},
+                 success: function(response){
+                     alert(response);
+                     editando = false;
+                     $('#FORM').trigger('reset');
+                     Actualizarform();
+                     document.getElementById('FORM').style.display = 'none';
+                     cargartodo();
+                    }
+             })
+
+
+         })
+
+         $('#buscarvideos').keyup(function(){
+             if($('#buscarvideos').val()){
+             let busqueda = $('#buscarvideos').val();
+             const data = {busqueda};
+                 $.post('buscarvideos.php', data, function(response){
+                 console.log(response);
+                 let cadena = JSON.parse(response); 
+                 let textohtml="";
+                        cadena.forEach(cadena=>{
+                            textohtml += "<a class='VIDEO'>" + "<img src='" + cadena.archivo + "'>" + "<p atributoid='"+ cadena.id +"'class='Titulo'>" + "<span style='text-align:left;width:60%;display:inline-block;'>" + cadena.titulo+"</span>"+"<span class='edit' style='text-align:center;background-color:gold;width:20%;display:inline-block;color:white;'>Editar</span>" +"<span class='delete' style='color:white;width:20%;text-align:center;background-color:red;display:inline-block;'>Borrar</span></p>"+"</a>";
+                        });
+                        $('#vidi').html(textohtml);
+                });
+             }else {$('#vidi ').html(null);}
+         })
+         
+         $(document).on('click', '.edit', function(){
+                     let elemento = $(this)[0].parentElement;
+                     let id = $(elemento).attr('atributoid');
+                     $.post('editconsulta.php',{id},function(response){
+                            let video = JSON.parse(response);
+                            let archivo = "";
+                            let titulo = "";
+                            let id = "";
+                            let usuariovideo = "";
+                            
+                            video.forEach(video=>{
+                                   titulo += video.titulo;
+                                   archivo += video.archivo;
+                                   id += video.id;
+                                   usuariovideo += video.usuariovideo;
+                            });
+
+                            $('#archivo').val(archivo);
+                            $('#titulo').val(titulo);
+                            $('#id').val(id);
+                            $('#usuariovideo').val(usuariovideo);
+                     })
+                     editando = true;
+                     document.getElementById('FORM').style.display = 'flex';
+                     Actualizarform();
+         })
+
+         $(document).on('click','.delete',function(){
+      if(confirm('Estas seguro de eliminar el video?')){
+        let elemento = $(this)[0] .parentElement;
+      let id = $(elemento).attr('atributoid');
+      $.post('borrarvideos.php',{id},function(response){
+           alert(response);
+           cargartodo();
+      })
+      }
+    })
+
+    })
+
+      </script>
+</body>
+</html>     

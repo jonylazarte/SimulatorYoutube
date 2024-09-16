@@ -1,0 +1,174 @@
+<!doctype html>
+<html>
+    <head>
+      
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-widht, initial-scale=1">
+        <link href="css/style.css" rel="stylesheet" type="text/css">
+       
+        <link rel="stylesheet" href="fuentes/css/all.css" type="text/css">
+       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+       <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,700&display=swap" rel="stylesheet">
+
+        
+    </head> 
+    <body >
+    <!--<div id="tapa" style="z-index:2;display:none; opacity: 0.5;float:left;height: 100%; width: 100%; background-color: #000000;position:fixed;"></div>-->
+      <header class="hider" style="z-index: 1;">
+      <nav class="navbar"style="z-index: 1;">     
+        <div id="botone" onclick="barre();"class="logi"><a><i class="fas fa-bars"></i></a><div style="align-items: center; padding-top:4px;padding-left: 6px;"><img src="yt.png"></div></div>
+        <div class="contenedorbusqueda"><input style="width:100%;height:100%;border:solid #dadada 1px; padding-bottom:4px; padding-left:10px; font-size:14px" placeholder="Buscar" type="search" id="busqueda"> <button style="width:10.5%; border:solid #dadada 1px;background-color:#fafafa;" type="submit"><i style="color:#7e7e7e; font-size:15px" class="fas fa-search"></i></button><div style="height:35.5px;width:40px;padding:9px;background-color:#fafafa;border-radius:50px;text-align:center;margin-left:7px; font-size:17px"><i style="align-self: center;color:black" class="fas fa-microphone"></i></div> </div>
+        <div  class="listaitems">
+          <ul  class="lista ">
+            <li onclick="subir()" class="item"><a><i class="fas fa-video"></i></a></li>
+            <li class="item"><a><i class="fab fa-buromobelexperte"></i></a></li>
+            <li class="item"><a ><i class="far fa-bell"></i></a></li>
+            <li class="itemu"><a id="botonperfil" onclick="perfilbt();"><i class="fas fa-user-circle" style="font-size:30px;"></i></a></li>
+          </ul>
+        </div>
+      </nav>
+
+      </header>  
+          <nav id="navegacione" onblur="cerrar();">
+            <div style="position:sticky; top:0px;" onclick="alerta();" class="logi2"><a  class="ICONO"><i style="text-align: center;" class="fas fa-bars"></i></a><div><a class="ytimg2"><img src="yt.png"></div></a></div>
+            <ul style="margin-top:9px;border-bottom:1px solid #e9e0e0; height:120px ">
+                <li class="LI1"><a class="navegacioneA" href=""><i class="fas fa-home"></i><span >Inicio</span> </a></li>
+                <li class="LI1"><a class="navegacioneA" href=""><i class="fas fa-atom"></i><span>Explorar</span></a></li>
+                <li  class="LI1"><a class="navegacioneA" href=""><i class="fas fa-file-contract"></i><span>Suscripciones</span></a></li>
+                
+            </ul>   
+             <ul style="margin-top:9px;border-bottom:1px solid #e9e0e0; height:155px ">
+                <li class="LI1"><a  href=""><i class="fas fa-book"></i><span >Biblioteca</span> </a></li>
+                <li class="LI1"><a href=""><i class="fas fa-history"></i><span>Historial</span></a></li>
+                <li  class="LI1"><a href="misvideos.html"><i class="fas fa-file-contract"></i><span>Mis videos</span></a></li>
+                <li class="LI1"> <a href=""><i class="fas fa-thumbs-up"></i><span>Videos que me gustan</span></a></li> 
+             </ul>
+             <ul style="margin-top:9px;border-bottom:1px solid #e9e0e0; height:230px ">
+              <li class="LI1"><a  href=""><i class="fab fa-youtube"></i><span >Youtube Premiun</span> </a></li>
+              <li class="LI1"><a href=""><i class="fas fa-film"></i><span>Peliculas</span></a></li>
+              <li  class="LI1"><a href=""><i class="fas fa-gamepad"></i><span>Videojuegos</span></a></li>
+              <li class="LI1"> <a href=""><i class="fas fa-satellite-dish"></i><span>Directo</span></a></li>
+              <li class="LI1"> <a href=""><i class="far fa-lightbulb"></i><span>Aprendizaje</span></a></li> 
+              <li class="LI1"> <a href=""><i class="fas fa-trophy"></i><span>Deportes</span></a></li>  
+           </ul>
+           <ul style="margin-top:9px;border-bottom:1px solid #e9e0e0; height:200px">
+            <li><a style="padding-left:3px;padding-bottom:6px;"><span style="font-size: 18px;">Mas de Youtube</span></a></li>
+            <li class="LI1"><a  href=""><i class="fas fa-cogs"></i></i><span >Configuración</span> </a></li>
+            <li class="LI1"><a href=""><i class="far fa-flag"></i></i><span>Historial de denuncias</span></a></li>
+            <li  class="LI1"><a href=""><i class="far fa-question-circle"></i></i><span>Ayuda</span></a></li>
+            <li class="LI1"> <a href=""><i class="far fa-comment-dots"></i></i><span>Enviar sugerencias</span></a></li>
+            </ul>
+                       
+        </nav>
+       
+        <nav class="navegacionecuenta" id="navegacionecuenta">
+          <div class="cuentacaja">
+            <div class="cuentalogo"><i class="fas fa-user-circle" style="font-size:30px;"></i></div>
+            <div class="cuentatxtos"><div class="div1"><span style="font-size: 14px;">Jonathan Lazarte</span></div><div class="div2"><a href="" style="text-decoration:none;font-size:12px;color:rgb(0, 140, 255);">Gestionar tu cuenta de google</a></div></div>
+          </div>
+          <ul class="listacuenta">
+            <li><a href=""><i class="far fa-user-circle"></i><span>Tu canal</span></a></li>
+            <li><a href=""><i class="fas fa-dollar-sign"></i><span>Compras y subscripciones</span></a></li>
+            <li><a href=""><i class="fas fa-cog"></i><span>Youtube Studio</span></a></li>
+            <li><a href=""><i class="far fa-address-card"></i><span>Cambiar de cuenta</span><i class="fas fa-angle-right"></i></a></li> 
+            <li> <a href="loginvista.html"><i class="fas fa-sign-in-alt"></i><span>Cerrar sesión</span></a></li>
+          </ul>
+          <ul style="margin-top:10px;height:300px!important;" class="listacuenta">
+            <li><a href=""><i class="far fa-user-circle"></i><span>Aspecto: tema del dispositivo</span><i class="fas fa-angle-right"></i></a></li>
+            <li><a href=""><i class="fas fa-language"></i><span>Idioma: Español</span><i class="fas fa-angle-right"></i></a></li>
+            <li><a href=""><i class="fas fa-globe"></i><span>Ubicación: Argentina</span><i class="fas fa-angle-right"></i></a></li>
+            <li><a href=""><i class="fas fa-cogs"></i><span>Configuración</span></a></li> 
+            <li> <a href=""><i class="fas fa-user-edit"></i><span>Tus datos en youtube</span></a></li>
+            <li> <a href=""><i class="far fa-question-circle"></i><span>Ayuda</span></a></li>
+            <li> <a href=""><i class="far fa-comment-dots"></i><span>Enviar sugerencias</span></a></li>
+            <li> <a href=""><i class="far fa-keyboard"></i><span>Combinación de teclas</span></a></li>
+          </ul>
+          <ul style="border-bottom:0px;margin-top:10px;height:47px!important;" class="listacuenta">
+             <li style="padding-left:0px"><a  href=""><span>Modo restringido: Desactivado</span><i class="fas fa-angle-right"></i></a></li>
+          </ul>
+        </nav>
+<main class="principal" style="padding:51px 0px">
+  <div style="background-color:black;padding:0px 0px;display:flex;align-content: center;align-items: center;justify-content: center;" class="reproductor">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/9gUeYwytoag" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  </div>
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/gtVirHikldA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</main>
+<section style="margin-top: 10px;width:100%;background-color:#fafafa;height:1500px;display:flex;flex-direction: row;justify-content: space-between;padding: 0px 120px" class="seccioncomentarios">
+ <div style="width:70%;height:200px;background-color:#fafafa;" id="cambiarvideo"><h1>Genbxnz</h1></div>
+ <div style="width:23%;height:1200px;background-color:#fafafa;display:flex;flex-direction:column;justify-content:space-between;padding:100px 2px">
+  <div onclick="cambiarvideo('IMG_9724.mp4')" style="border:solid 1px #888888;height:120px"></div>
+  <div onclick="cambiarvideo('IMG_9525.mp4')" style="border:solid 1px #888888;height:120px"></div>
+  <div onclick="cambiarvideo('IMG_9527.mp4')" style="border:solid 1px #888888;height:120px"></div>
+  <div onclick="cambiarvideo('123411.mp4')" style="border:solid 1px #888888;height:120px"></div>
+  <div onclick="cambiarvideo('')" style="border:solid 1px #888888;height:120px"></div>
+ </div>
+
+</section>
+  
+    </body>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      
+      
+      function barre(){
+        document.getElementById("navegacione").style.left = "0px";
+        document.getElementById("botone").barre = alerta;
+        x = document.getElementById("princi");
+        x.style.paddingLeft = "238px";
+        y = document.getElementById("navegacione");
+        y.style.opacity = 0.1;
+        document.getElementById("tapa").style.display = "inline-block";
+      }
+      function alerta(){
+       
+        document.getElementById("navegacione").style.left = "-225px";
+        document.getElementById("botone").barre = barre;
+       // document.getElementById("tapa").style.display = "none";
+        x = document.getElementById("princi");
+        x.style.paddingLeft = "90px";    
+      }
+      function perfilbt(){
+        document.getElementById("navegacionecuenta").style.display = "inline-block";
+        document.getElementById("botonperfil").perfilbt = perfilbt2;
+        
+      }
+      function perfilbt2(){
+        document.getElementById("navegacionecuenta").style.display = "none";
+        document.getElementById("botonperfil").perfilbt = perfilbt;
+      }
+      function cerrar(){
+        document.getElementById("navegacione").style.display = "none";
+      }
+      function cambiarvideo(enlace){
+        document.getElementById('bidio').src = enlace;
+      } 
+
+      $(document).ready(function(){
+    
+
+    $('#busqueda').keyup(function(e){
+        let busqueda = $('#busqueda').val();
+        $.ajax({
+                     url : 'LOGIN.php',
+                     type: 'post',
+                     data: { busqueda },
+                     success: function(response){
+                          let tabla = JSON.parse(response);
+                          let template= '';
+                          tabla.forEach(tabla => {
+                              template += "<a style='text-align:center; color:red;' class='VIDEO'>" + tabla.nombre + tabla.email + tabla.contraseña + "</a>"
+                          })
+                          $('#vidi').html(template);
+                          console.log(tabla);
+                     }
+        })
+    })
+
+    
+
+})
+      
+    </script>
+</html>
