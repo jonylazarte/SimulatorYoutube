@@ -19,9 +19,9 @@ $client->addScope("email");
 $client->addScope("profile");
 
 // Connect to database
-$hostname = "localhost:3306";
-$username = "JonathanLazarte";
-$password = "Jonii1543104";
-$database = "jonathanlazarte";
+$hostname = "mysql.railway.internal";
+$username = "root";
+$password = "VTiCxHHQzEntcJvzoXuUCZUXKBJYnaTv";
+$database = "railway";
 
 $conn = mysqli_connect($hostname, $username, $password, $database);
